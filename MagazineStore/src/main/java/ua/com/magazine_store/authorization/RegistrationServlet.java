@@ -1,4 +1,4 @@
-package ua.com.magazine_store;
+package ua.com.magazine_store.authorization;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

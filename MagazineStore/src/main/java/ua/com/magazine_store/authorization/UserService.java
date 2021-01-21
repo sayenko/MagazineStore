@@ -1,4 +1,4 @@
-package ua.com.magazine_store;
+package ua.com.magazine_store.authorization;
 
 import java.util.ArrayList;
 import java.util.List;

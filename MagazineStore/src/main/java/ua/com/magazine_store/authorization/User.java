@@ -1,4 +1,4 @@
-package ua.com.magazine_store;
+package ua.com.magazine_store.authorization;
 
 public class User {
 	private String firstName;
