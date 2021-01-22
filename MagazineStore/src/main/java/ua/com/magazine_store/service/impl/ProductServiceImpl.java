@@ -3,23 +3,35 @@ package ua.com.magazine_store.service.impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import ua.com.magazine_store.dao.ProductDao;
 import ua.com.magazine_store.dao.impl.ProductDaoImpl;
 import ua.com.magazine_store.domain.Product;
 import ua.com.magazine_store.service.ProductService;
 
 public class ProductServiceImpl implements ProductService {
-
+	
+	private static Logger LOGGER = Logger.getLogger(ProductServiceImpl.class);
+	private static ProductService productServiceImpl;
+	
 	private ProductDao productDao;
 
-	public ProductServiceImpl() {
+	private ProductServiceImpl() {
 		try {
 			this.productDao = new ProductDaoImpl();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 
+	public static ProductService getProductService() {
+		if (productServiceImpl == null) {
+			productServiceImpl = new ProductServiceImpl();
+		}
+		return productServiceImpl;
+	}
+	
 	@Override
 	public Product create(Product t) {
 		return productDao.create(t);

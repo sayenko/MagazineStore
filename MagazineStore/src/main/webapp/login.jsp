@@ -9,7 +9,7 @@
 <body>
 	<form action="login" method="post">
 		
-		<label for="login">Login :</label> <input name="login" style="margin-bottom: 15px;margin-left: 23px";><br>
+		<label for="login">Login :</label> <input name="login" style="margin-bottom: 15px;margin-left: 23px"><br>
 		
 		<label for="password">Password :</label> <input name="password" style="margin-bottom: 15px"><br>
 		

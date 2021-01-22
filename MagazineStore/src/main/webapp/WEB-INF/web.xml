@@ -6,7 +6,7 @@
   </welcome-file-list>
   <servlet>
   	<servlet-name>registration</servlet-name>
-  	<servlet-class>ua.com.magazine_store.authorization.RegistrationServlet</servlet-class>
+  	<servlet-class>ua.com.magazine_store.servlet.RegistrationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>registration</servlet-name>

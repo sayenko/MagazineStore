@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import ua.com.magazine_store.dao.ProductDao;
 import ua.com.magazine_store.domain.Product;
 import ua.com.magazine_store.utils.ConnectionUtils;
@@ -20,6 +22,8 @@ public class ProductDaoImpl implements ProductDao {
 	private static String UPDATE_BY_ID = "update product set name=?, description=?, price=? where id=?";
 	private static String DELETE_BY_ID = "delete from product where id=?";
 
+	private static Logger LOGGER = Logger.getLogger(ProductDaoImpl.class);
+	
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 
@@ -42,7 +46,7 @@ public class ProductDaoImpl implements ProductDao {
 			product.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 		return product;
@@ -65,7 +69,7 @@ public class ProductDaoImpl implements ProductDao {
 			product = new Product(productId, name, description, purchasePrice);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 		return product;
@@ -95,7 +99,7 @@ public class ProductDaoImpl implements ProductDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 
@@ -114,7 +118,7 @@ public class ProductDaoImpl implements ProductDao {
 				productRecords.add(new Product(productId, name, description, purchasePrice));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return productRecords;
 	}

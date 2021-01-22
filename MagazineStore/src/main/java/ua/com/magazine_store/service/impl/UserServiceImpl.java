@@ -3,6 +3,8 @@ package ua.com.magazine_store.service.impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import ua.com.magazine_store.dao.UserDao;
 import ua.com.magazine_store.dao.impl.UserDaoImpl;
 import ua.com.magazine_store.domain.User;
@@ -10,16 +12,26 @@ import ua.com.magazine_store.service.UserService;
 
 public class UserServiceImpl implements UserService {
 
+	private static Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
+	private static UserService userServiceImpl;
+	
 	private UserDao userDao;
 
-	public UserServiceImpl() {
+	private UserServiceImpl() {
 		try {
 			this.userDao = new UserDaoImpl();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 
+	public static UserService getUserService() {
+		if (userServiceImpl == null) {
+			userServiceImpl = new UserServiceImpl();
+		}
+		return userServiceImpl;
+	}
+	
 	@Override
 	public User create(User t) {
 		return userDao.create(t);
@@ -43,6 +55,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> readAll() {
 		return userDao.readAll();
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		return userDao.getUserByEmail(email);
 	}
 
 }

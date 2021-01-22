@@ -17,14 +17,14 @@ public class MainTest {
 		
 		System.out.println("\n--------------User implemintation--------------\n");
 		
-		UserService userService = new UserServiceImpl();
-		userService.create(new User("test1@test", "test1", "test1", "test1"));
-		userService.create(new User("test2@test", "test2", "test2", "test2"));
-		userService.create(new User("test3@test", "test3", "test3", "test3"));
-		userService.create(new User("test4@test", "test4", "test4", "test4"));
-		userService.create(new User("test5@test", "test5", "test5", "test5"));
-		userService.create(new User("test6@test", "test6", "test6", "test6"));
-		userService.update(new User(1, "test@email", "testFirstName", "testLastName", "testRole"));
+		UserService userService = UserServiceImpl.getUserService();
+		userService.create(new User("test1@test", "test1", "test1", "USER", "test1"));
+		userService.create(new User("test2@test", "test2", "test2", "USER", "test2"));
+		userService.create(new User("test3@test", "test3", "test3", "USER", "test3"));
+		userService.create(new User("test4@test", "test4", "test4", "USER", "test4"));
+		userService.create(new User("test5@test", "test5", "test5", "USER", "test5"));
+		userService.create(new User("test6@test", "test6", "test6", "USER", "test6"));
+		userService.update(new User(1, "test@email", "testFirstName", "testLastName", "ADMINISTRATOR", "testPassword"));
 		userService.delete(3);
 		System.out.println(userService.read(2));
 		System.out.println("-----------------------------------------------");
@@ -32,7 +32,7 @@ public class MainTest {
 		
 		System.out.println("\n------------Product implemintation-------------\n");
 		
-		ProductService productService = new ProductServiceImpl();
+		ProductService productService = ProductServiceImpl.getProductService();
 		productService.create(new Product("test1", "test1", 150.50));
 		productService.create(new Product("test2", "test2", 250.50));
 		productService.create(new Product("test3", "test3", 350.50));
@@ -47,7 +47,7 @@ public class MainTest {
 		
 		System.out.println("\n-------------Bucket implemintation-------------\n");
 		
-		BucketService bucketService = new BucketServiceImpl();
+		BucketService bucketService = BucketServiceImpl.getBucketService();
 		bucketService.create(new Bucket(1, 1, Date.from(Instant.now())));
 		bucketService.create(new Bucket(2, 2, Date.from(Instant.now())));
 		bucketService.create(new Bucket(5, 6, Date.from(Instant.now())));

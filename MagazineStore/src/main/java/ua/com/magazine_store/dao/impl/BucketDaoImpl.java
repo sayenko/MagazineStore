@@ -9,21 +9,25 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import ua.com.magazine_store.dao.BucketDao;
 import ua.com.magazine_store.domain.Bucket;
 import ua.com.magazine_store.utils.ConnectionUtils;
 
-public class BuckedDaoImpl implements BucketDao {
+public class BucketDaoImpl implements BucketDao {
 
 	private static String READ_ALL = "select * from bucket";
 	private static String CREATE = "insert into bucket(user_id, product_id, purchase_date) values (?, ?, ?)";
 	private static String READ_BY_ID = "select * from bucket where id = ?";
 	private static String DELETE_BY_ID = "delete from bucket where id=?";
 
+	private static Logger LOGGER = Logger.getLogger(BucketDaoImpl.class);
+	
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 
-	public BuckedDaoImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public BucketDaoImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		this.connection = ConnectionUtils.openConnection();
 	}
 
@@ -41,7 +45,7 @@ public class BuckedDaoImpl implements BucketDao {
 			bucket.setId(resultSet.getInt(1));
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 		return bucket;
@@ -64,7 +68,7 @@ public class BuckedDaoImpl implements BucketDao {
 			bucket = new Bucket(bucketId, userId, productId, purchaseDate);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 		return bucket;
@@ -83,7 +87,7 @@ public class BuckedDaoImpl implements BucketDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 	}
@@ -103,7 +107,7 @@ public class BuckedDaoImpl implements BucketDao {
 				bucketRecords.add(new Bucket(bucketId, userId, productId, purchaseDate));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return bucketRecords;
 	}
