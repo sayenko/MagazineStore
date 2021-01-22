@@ -26,13 +26,13 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("login");
 		String password = request.getParameter("password");
 
-		User user = userService.getUserByEmail(email);
-
-		if (user != null && user.getPassword().equals(password)) {
-			request.setAttribute("userEmail", email);
-			request.getRequestDispatcher("cabinet.jsp").forward(request, response);
-		} else 
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+		if(!email.isEmpty() && !password.isEmpty()) {
+			User user = userService.getUserByEmail(email);
+			if (user != null && user.getPassword().equals(password)) {
+				request.setAttribute("userEmail", email);
+				request.getRequestDispatcher("cabinet.jsp").forward(request, response);
+			}
+		} else request.getRequestDispatcher("login.jsp").forward(request, response);		 
 	}
 
 }
