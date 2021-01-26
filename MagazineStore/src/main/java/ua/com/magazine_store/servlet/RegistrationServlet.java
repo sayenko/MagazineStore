@@ -16,11 +16,6 @@ public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserService userService = UserServiceImpl.getUserService();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
@@ -30,10 +25,11 @@ public class RegistrationServlet extends HttpServlet {
 
 		if(!email.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty()) {
 			userService.create(new User(email, firstName, lastName, UserRole.USER.toString(), password));
-			HttpSession session = request.getSession(true);
-			session.setAttribute("userEmail", email);		
-			request.getRequestDispatcher("cabinet.jsp").forward(request, response);
-		} else request.getRequestDispatcher("index.jsp").forward(request, response);
+			
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("Success");
+		}
 	}
 
 }

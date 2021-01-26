@@ -7,32 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import ua.com.magazine_store.domain.User;
 import ua.com.magazine_store.service.UserService;
 import ua.com.magazine_store.service.impl.UserServiceImpl;
+import ua.lviv.lgs.dto.UserLogin;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserService userService = UserServiceImpl.getUserService();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String email = request.getParameter("login");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
 		if(!email.isEmpty() && !password.isEmpty()) {
 			User user = userService.getUserByEmail(email);
 			if (user != null && user.getPassword().equals(password)) {
-				request.setAttribute("userEmail", email);
-				request.getRequestDispatcher("cabinet.jsp").forward(request, response);
+				UserLogin userLogin = new UserLogin();
+				userLogin.destinationUrl = "cabinet.jsp";
+				userLogin.userEmail = user.getEmail();
+				String json = new Gson().toJson(userLogin);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
 			}
-		} else request.getRequestDispatcher("login.jsp").forward(request, response);		 
+		}	 
 	}
 
 }

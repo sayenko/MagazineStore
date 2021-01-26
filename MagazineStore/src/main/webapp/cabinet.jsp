@@ -10,7 +10,7 @@
 
 	<h1>Welcome to the cabinet ${userEmail} </h1><br>
 
-	<a href="index.jsp">exit</a>
+	<a href="index.jsp">EXIT</a>
 
 </body>
 </html>
