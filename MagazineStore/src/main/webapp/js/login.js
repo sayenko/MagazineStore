@@ -62,7 +62,6 @@ $("button.login").click(function() {
 		};
 
 		$.post("login", userLogin, function(data) {
-		debugger;
 			if(data !== ''){
 				var customUrl = '';
 				var urlContent = window.location.href.split('/');
