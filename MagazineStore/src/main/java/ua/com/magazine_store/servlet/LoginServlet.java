@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import ua.com.magazine_store.domain.User;
+import ua.com.magazine_store.dto.UserLogin;
 import ua.com.magazine_store.service.UserService;
 import ua.com.magazine_store.service.impl.UserServiceImpl;
-import ua.lviv.lgs.dto.UserLogin;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 			if (user != null && user.getPassword().equals(password)) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("userId", user.getId());
+				session.setAttribute("role", user.getRole().toString());
 
 				UserLogin userLogin = new UserLogin();
 				userLogin.destinationUrl = "cabinet.jsp";

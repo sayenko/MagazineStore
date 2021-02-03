@@ -1,4 +1,4 @@
-package ua.lviv.lgs.dto;
+package ua.com.magazine_store.dto;
 
 public class UserLogin {
 	public String userEmail;

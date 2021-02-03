@@ -23,8 +23,8 @@ public class MainTest {
 		userService.create(new User("test3@test", "test3", "test3", "USER", "test3"));
 		userService.create(new User("test4@test", "test4", "test4", "USER", "test4"));
 		userService.create(new User("test5@test", "test5", "test5", "USER", "test5"));
-		userService.create(new User("test6@test", "test6", "test6", "USER", "test6"));
-		userService.update(new User(1, "test@email", "testFirstName", "testLastName", "ADMINISTRATOR", "testPassword"));
+		userService.create(new User("user@email", "test6", "test6", "USER", "user@email"));
+		userService.update(new User(1, "admin@email", "testFirstName", "testLastName", "ADMINISTRATOR", "admin@email"));
 		userService.delete(3);
 		System.out.println(userService.read(2));
 		System.out.println("-----------------------------------------------");
@@ -33,13 +33,13 @@ public class MainTest {
 		System.out.println("\n------------Product implemintation-------------\n");
 		
 		ProductService productService = ProductServiceImpl.getProductService();
-		productService.create(new Product("test1", "test1", 150.50));
-		productService.create(new Product("test2", "test2", 250.50));
-		productService.create(new Product("test3", "test3", 350.50));
-		productService.create(new Product("test4", "test4", 150.50));
-		productService.create(new Product("test5", "test5", 250.50));
-		productService.create(new Product("test6", "test6", 350.50));
-		productService.update(new Product(1, "testName", "testDescription", 160.25));
+		productService.create(new Product("milk", "decsription milk", 150.50));
+		productService.create(new Product("water", "decsription water", 250.50));
+		productService.create(new Product("bread", "decsription bread", 350.50));
+		productService.create(new Product("apple", "decsription apple", 150.50));
+		productService.create(new Product("banana", "decsription banana", 250.50));
+		productService.create(new Product("meat", "decsription meat", 350.50));
+		productService.update(new Product(2, "chocolate", "decsription chocolate", 160.25));
 		productService.delete(3);
 		System.out.println(productService.read(2));
 		System.out.println("-----------------------------------------------");

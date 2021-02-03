@@ -16,7 +16,7 @@ import ua.com.magazine_store.service.ProductService;
 import ua.com.magazine_store.service.impl.ProductServiceImpl;
 
 @WebServlet("/products")
-public class Products extends HttpServlet {
+public class ProductsController extends HttpServlet {
 	private ProductService productService = ProductServiceImpl.getProductService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

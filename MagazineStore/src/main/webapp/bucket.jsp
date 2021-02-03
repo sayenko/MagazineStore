@@ -15,12 +15,19 @@
 	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
 	crossorigin="anonymous">
 
+<link rel="stylesheet" href="css/bucket.css">
+
 <title>Cabinet</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	
-	<h1>Bucket</h1>
+	<div class="container-fluid">
+		<input type="text" id="myInput" onkeyup="myFunction()"
+			placeholder="Search for names.." title="Type in a name">
+
+		<table id="myTable"></table>
+	</div>
 	
 	<jsp:include page="footer.jsp"></jsp:include>
 	
@@ -39,5 +46,6 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   
   <script src="js/header.js"></script>
+  <script src="js/bucket.js"></script>
 </body>
 </html>
